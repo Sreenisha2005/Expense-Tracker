@@ -27,7 +27,7 @@ public class Expense {
     // Link to user
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
 
     // getters & setters
 //    public Long getId() { return id; }

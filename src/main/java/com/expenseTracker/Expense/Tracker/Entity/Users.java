@@ -24,8 +24,10 @@ public class Users {
     private String password; // encoded
 
     @Column(nullable = false)
-    private String role; // ROLE_USER or ROLE_ADMIN
+    // ROLE_USER or ROLE_ADMIN
+    private String role;
 
+}
     // getters & setters
 //    public Long getId() { return id; }
 //    public void setId(Long id) { this.id = id; }
@@ -35,4 +37,4 @@ public class Users {
 //    public void setPassword(String password) { this.password = password; }
 //    public String getRole() { return role; }
 //    public void setRole(String role) { this.role = role; }
-//}
+//

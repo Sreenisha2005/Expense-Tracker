@@ -1,10 +1,15 @@
 package com.expenseTracker.Expense.Tracker.Controller;
 
+import com.expenseTracker.Expense.Tracker.Entity.Expense;
+import com.expenseTracker.Expense.Tracker.Entity.Users;
+import com.expenseTracker.Expense.Tracker.Service.ExpenseService;
+import com.expenseTracker.Expense.Tracker.Service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/expenses")
@@ -18,14 +23,14 @@ public class ExpenseController {
 
     @GetMapping
     public ResponseEntity<?> list(Authentication auth) {
-        User user = userService.findByUsername(auth.getName());
+        Users user = userService.findByUsername(auth.getName());
         List<Expense> list = expenseService.getExpensesForUser(user);
         return ResponseEntity.ok(list);
     }
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Expense e, Authentication auth) {
-        User user = userService.findByUsername(auth.getName());
+        Users user = userService.findByUsername(auth.getName());
         e.setUser(user);
         Expense saved = expenseService.saveExpense(e);
         return ResponseEntity.ok(saved);
@@ -34,7 +39,7 @@ public class ExpenseController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Expense updated, Authentication auth) {
         // naive: ensure owner or admin
-        User user = userService.findByUsername(auth.getName());
+        Users user = userService.findByUsername(auth.getName());
         Expense existing = expenseService.getExpensesForUser(user).stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
         if (existing == null && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             return ResponseEntity.status(403).body("Forbidden");
@@ -50,7 +55,7 @@ public class ExpenseController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, Authentication auth) {
-        User user = userService.findByUsername(auth.getName());
+        Users user = userService.findByUsername(auth.getName());
         boolean isOwner = expenseService.getExpensesForUser(user).stream().anyMatch(e -> e.getId().equals(id));
         boolean isAdmin = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
         if (!isOwner && !isAdmin) return ResponseEntity.status(403).body("Forbidden");

@@ -1,6 +1,7 @@
 package com.expenseTracker.Expense.Tracker.Security;
 
-import com.example.expensetracker.service.UserService;
+
+import com.expenseTracker.Expense.Tracker.Service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

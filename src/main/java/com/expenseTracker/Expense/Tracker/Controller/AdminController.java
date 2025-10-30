@@ -1,6 +1,5 @@
 package com.expenseTracker.Expense.Tracker.Controller;
 
-import com.expenseTracker.Expense.Tracker.Entity.User;
 import com.expenseTracker.Expense.Tracker.Entity.Users;
 import com.expenseTracker.Expense.Tracker.Repository.UserRepository;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.expenseTracker.Expense.Tracker.Service;
 
 import com.expenseTracker.Expense.Tracker.Entity.Expense;
-import com.expenseTracker.Expense.Tracker.Entity.User;
+import com.expenseTracker.Expense.Tracker.Entity.Users;
 import com.expenseTracker.Expense.Tracker.Repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class ExpenseService {
 
     public ExpenseService(ExpenseRepository repo) { this.repo = repo; }
 
-    public List<Expense> getExpensesForUser(User user) {
+    public List<Expense> getExpensesForUser(Users user) {
         return repo.findByUser(user);
     }
 
@@ -22,7 +22,7 @@ public class ExpenseService {
 
     public void deleteById(Long id) { repo.deleteById(id); }
 
-    public List<Expense> getExpensesForUserBetween(User user, LocalDate from, LocalDate to) {
+    public List<Expense> getExpensesForUserBetween(Users user, LocalDate from, LocalDate to) {
         return repo.findByUserAndDateBetween(user, from, to);
     }
 }
