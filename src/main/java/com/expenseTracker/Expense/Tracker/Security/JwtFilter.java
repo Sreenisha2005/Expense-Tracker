@@ -1,5 +1,6 @@
 package com.expenseTracker.Expense.Tracker.Security;
 
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
