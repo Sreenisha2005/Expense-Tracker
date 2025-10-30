@@ -6,15 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +26,7 @@ public class User {
     @Column(nullable = false)
     private String role; // ROLE_USER or ROLE_ADMIN
 
-//    // getters & setters
+    // getters & setters
 //    public Long getId() { return id; }
 //    public void setId(Long id) { this.id = id; }
 //    public String getUsername() { return username; }
@@ -37,4 +35,4 @@ public class User {
 //    public void setPassword(String password) { this.password = password; }
 //    public String getRole() { return role; }
 //    public void setRole(String role) { this.role = role; }
-}
+//}

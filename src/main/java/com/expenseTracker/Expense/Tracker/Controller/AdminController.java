@@ -1,6 +1,7 @@
 package com.expenseTracker.Expense.Tracker.Controller;
 
 import com.expenseTracker.Expense.Tracker.Entity.User;
+import com.expenseTracker.Expense.Tracker.Entity.Users;
 import com.expenseTracker.Expense.Tracker.Repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class AdminController {
     public AdminController(UserRepository userRepository) { this.userRepository = userRepository; }
 
     @GetMapping("/users")
-    public List<User> listUsers() {
+    public List<Users> listUsers() {
         return userRepository.findAll();
     }
 }

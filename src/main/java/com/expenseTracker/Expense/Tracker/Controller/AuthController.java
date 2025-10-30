@@ -1,5 +1,10 @@
 package com.expenseTracker.Expense.Tracker.Controller;
 
+import com.expenseTracker.Expense.Tracker.DTO.AuthRequest;
+import com.expenseTracker.Expense.Tracker.DTO.AuthResponse;
+import com.expenseTracker.Expense.Tracker.Entity.Users;
+import com.expenseTracker.Expense.Tracker.Security.JwtUtil;
+import com.expenseTracker.Expense.Tracker.Service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,13 +26,13 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest req) {
-        User u = userService.registerUser(req.getUsername(), req.getPassword());
+        Users u = userService.registerUser(req.getUsername(), req.getPassword());
         return ResponseEntity.ok(u.getUsername());
     }
 
     @PostMapping("/register-admin")
     public ResponseEntity<?> registerAdmin(@RequestBody AuthRequest req) {
-        User u = userService.registerAdmin(req.getUsername(), req.getPassword());
+        Users u = userService.registerAdmin(req.getUsername(), req.getPassword());
         return ResponseEntity.ok(u.getUsername());
     }
 
